@@ -7,8 +7,10 @@
 #define CLI_SYMBOL "Ringi Auth>"
 #define FILE_NAME "user.json"
 
-#define PASSWORD_LEN 12
 #define COMMAND_LEN 12
+#define USERNAME_LEN 32
+#define PASSWORD_LEN 32
+
 
 void generate_rnd_pwd(void);
 void show_content(FILE * fl);
@@ -65,7 +67,19 @@ int main(void)
                 //continue
                 if(is_command == 0)
                 {
-                    
+                    //create user routine
+                    if(strcmp(command_str, "/add user"))
+                    {
+                        char username[USERNAME_LEN];
+                        char password[PASSWORD_LEN];
+
+                        printf("Enter username:");
+                        scanf("%s", username); 
+                        printf("Enter password:")
+                        scanf("%s", password);
+
+
+                    }
                 }
 
             }
