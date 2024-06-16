@@ -19,6 +19,8 @@ int main(void)
 
     char command_str[CLI_COMMAND_BUFFER_SIZE];
     char command[COMMAND_LEN];
+    const char delim = '/';
+    const char space = ' ';
     char throwaway;
     FILE *user_file = fopen(FILE_NAME, "r");
     if(user_file == NULL)
@@ -35,11 +37,43 @@ int main(void)
         do
         {
             printf(CLI_SYMBOL);
-            scanf(" %[^\n]", command_str);
+            fgets(command_str,COMMAND_LEN, stdin);
 
-            if(strcmp(command_str, "/show users") == 0)
-                show_content(user_file);
+            //Rules
+            //No / found
 
+            //The command does not have / 
+            if(command_str[0] == delim)
+            {
+                //only one space for the user name
+                int count_spaces = 0;
+                int is_command = 0;
+                for(int i = 0; i < command_str[i]; i++)
+                {
+                    if(command_str[i] == space)
+                    {
+                        count_spaces ++;
+                    }
+                    if(count_spaces > 1)
+                    {
+                        printf("The command has too many arguments only one allowed.\n");
+                        is_command = 1;
+                        break;
+                    }
+                }
+
+                //continue
+                if(is_command == 0)
+                {
+                    
+                }
+
+            }
+            else
+            {
+                printf("The command given doesn\'t have correct format\n");
+            }
+            
         }while(strcmp(command_str, "/quit") != 0);
 
     }
